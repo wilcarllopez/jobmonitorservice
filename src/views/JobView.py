@@ -1,9 +1,7 @@
 from flask import request, json, Response, Blueprint
-from flask_restful import Api
 from ..models.JobModel import JobModel, JobSchema
 
 job_api = Blueprint('modulelogs_app', __name__)
-api = Api(job_api)
 job_schema: JobSchema = JobSchema()
 
 @job_api.route('/', methods=['POST'])
