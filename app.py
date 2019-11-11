@@ -4,10 +4,9 @@ import markdown
 
 from flask import Flask
 
-from . import config
-from .models import db
-from .views.JobView import job_api as job_blueprint
-
+import config
+from src.models import db
+from src.views.JobView import job_api as job_blueprint
 
 def create_app(env_name):
     """

@@ -6,5 +6,5 @@ RUN pip install flask gunicorn
 COPY . /app
 RUN pip install -r requirements.txt
 
-EXPOSE 8080
-CMD [ "gunicorn", "-b", "127.0.0.1:8000", "app:app" ]
+EXPOSE 8000
+CMD [ "gunicorn", "-b", "0.0.0.0:8000", "run:app" ]
