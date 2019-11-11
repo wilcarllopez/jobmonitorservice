@@ -1,7 +1,7 @@
 import os
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from src.models import UserModel, BlogpostModel
+from src.models import JobModel
 
 from src.app import create_app, db
 
@@ -14,5 +14,8 @@ manager = Manager(app=app)
 
 manager.add_command('db', MigrateCommand)
 
+INSTALLED_APPS = (
+    "gunicorn"
+)
 if __name__ == '__main__':
   manager.run()

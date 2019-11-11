@@ -1,5 +1,10 @@
 import os
-DATABASE_URL = "postgres://name:password@houst:5432/blog_api_db"
+from os.path import join, dirname
+from dotenv import load_dotenv
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
 class Development(object):
     """
     Development environment configuration
