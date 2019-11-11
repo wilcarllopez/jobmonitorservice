@@ -1,9 +1,9 @@
 from flask import request, json, Response, Blueprint
-from ..models.JobModel import JobModel, JobSchema
-from sqlalchemy.dialects.postgresql import UUID
 
-job_api = Blueprint('users', __name__)
-job_schema = JobSchema()
+from ..models.JobModel import JobModel, JobSchema
+
+job_api = Blueprint('modulelogs_app', __name__)
+job_schema: JobSchema = JobSchema()
 
 @job_api.route('/', methods=['POST'])
 def create():
@@ -11,6 +11,7 @@ def create():
     Create Job Function
     """
     req_data = request.get_json()
+    print(str(req_data))
     data, error = job_schema.load(req_data)
     if error:
         return custom_response(error, 404)
@@ -24,8 +25,8 @@ def create():
 @job_api.route('/', methods=['GET'])
 def get_all():
   jobs = JobModel.get_all_jobs()
-  ser_users = job_schema.dump(jobs, many=True)
-  return custom_response(ser_users, 200)
+  job_message = job_schema.dump(jobs, many=True)
+  return custom_response(job_message, 200)
 
 @job_api.route('/<string:job_id>', methods=['GET'])
 def get_a_job(job_id):

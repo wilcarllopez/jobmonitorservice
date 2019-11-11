@@ -1,10 +1,12 @@
-FROM python:3
+FROM python:3.7
 
+RUN apt-get update -y
+RUN apt-get install postgres
 WORKDIR /app
-
-COPY gunicorn_app/requirements.txt ./
+RUN pip install flask gunicorn
+COPY . /app
 RUN pip install -r requirements.txt
+RUN postgres -p 8000
 
-COPY gunicorn_app /app
 EXPOSE 8080
 CMD [ "gunicorn", "-b", "127.0.0.1:8000", "/run.py" ]
